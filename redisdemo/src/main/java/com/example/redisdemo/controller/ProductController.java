@@ -16,8 +16,6 @@ import org.springframework.web.bind.annotation.RestController;
 import com.example.redisdemo.entity.Product;
 import com.example.redisdemo.service.ProductService;
 
-import lombok.experimental.PackagePrivate;
-
 @RestController
 @RequestMapping("/api/v1/products/")
 public class ProductController {
@@ -46,9 +44,9 @@ public class ProductController {
         return ResponseEntity.status(HttpStatus.CREATED).body(savedProduct);
     }
 
-    @PutMapping("update")
-    public ResponseEntity<Product> updateProduct(@RequestBody Product product) {
-        var updatedProduct = service.updateProduct(product);
+    @PutMapping("update/{id}")
+    public ResponseEntity<Product> updateProduct(@PathVariable("id") int id, @RequestBody Product product) {
+        var updatedProduct = service.updateProduct(product.getId(), product);
         return ResponseEntity.ok(updatedProduct);
     }
 

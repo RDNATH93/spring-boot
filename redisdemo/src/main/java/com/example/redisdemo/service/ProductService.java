@@ -2,6 +2,9 @@ package com.example.redisdemo.service;
 
 import java.util.List;
 
+import org.springframework.cache.annotation.CacheEvict;
+import org.springframework.cache.annotation.CachePut;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
 import com.example.redisdemo.entity.Product;
@@ -17,22 +20,26 @@ public class ProductService {
     }
 
     public Product saveProduct(Product product) {
-       return productDAO.save(product);
+        return productDAO.save(product);
     }
 
+    @Cacheable(value = "Product")
     public List<Product> getAllProducts() {
         return productDAO.findAll();
     }
 
+    @Cacheable(value = "Product")
     public Product getProductById(int id) {
         return productDAO.findProductById(id);
     }
 
-    public long  deleteProductById(int id){
-         return productDAO.deleteProductById(id);
+    @CacheEvict(value = "Product")
+    public long deleteProductById(int id) {
+        return productDAO.deleteProductById(id);
     }
 
-    public Product updateProduct(Product product) {
-        return productDAO.updateProduct(product);
+    @CachePut(value = "Product")
+    public Product updateProduct(int id, Product product) {
+        return productDAO.updateProduct(id, product);
     }
 }
