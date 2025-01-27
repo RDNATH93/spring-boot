@@ -13,13 +13,6 @@ services:
       - "3306:3306"
     volumes:
       - mysql_data:/var/lib/mysql
-  cloudbeaver:
-    image: dbeaver/cloudbeaver:latest
-    container_name: cloudbeaver
-    ports:
-     - "8978:8978"
-    depends_on:
-     - mysql    
 
 volumes:
   mysql_data:
