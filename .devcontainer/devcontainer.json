@@ -1,7 +1,5 @@
 {
     "name": "My Dev Container",
-    "dockerComposeFile": "docker-compose.yml",
-    "service": "services",
     "workspaceFolder": "/workspaces/spring-boot",
     "postCreateCommand": "My Dev Container is ready'",
 	"customizations": {
