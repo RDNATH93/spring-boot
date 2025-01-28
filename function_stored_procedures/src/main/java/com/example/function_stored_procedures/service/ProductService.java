@@ -19,4 +19,9 @@ public class ProductService {
     public List<Product> getAllProducts(){
         return productRepository.findAll();
     }
+
+    public Product updateStockQuantity(int productId, int quantity) {
+        productRepository.updateStockQuantity(productId, quantity);
+        return productRepository.findById(productId).get();
+    }
 }

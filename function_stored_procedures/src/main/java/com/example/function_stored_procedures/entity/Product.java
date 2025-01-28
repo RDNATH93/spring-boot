@@ -5,9 +5,22 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.NamedStoredProcedureQueries;
+import jakarta.persistence.NamedStoredProcedureQuery;
+import jakarta.persistence.ParameterMode;
+import jakarta.persistence.StoredProcedureParameter;
 import jakarta.persistence.Table;
 import lombok.*;
 
+
+@NamedStoredProcedureQueries({
+    @NamedStoredProcedureQuery(name = "updateStockProcedure",procedureName = "update_stock",
+    parameters = {
+      @StoredProcedureParameter(mode = ParameterMode.IN,name = "productId", type = Integer.class),
+      @StoredProcedureParameter(mode = ParameterMode.IN,name = "quantity", type = Integer.class)
+    }
+  )
+})
 
 @Data
 @AllArgsConstructor
