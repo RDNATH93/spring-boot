@@ -1,0 +1,21 @@
+spring:
+  application.name: locking-demo
+# Database configuration
+  datasource:
+    url: jdbc:mysql://localhost:3306/springDB
+    username: admin
+    password: admin
+    driver-class-name: com.mysql.cj.jdbc.Driver
+#   sql:
+#     init:
+#       schema-locations:  classpath:schema.sql
+#       data-locations: classpath:data.sql
+
+# Hibernate properties
+  jpa:
+    open-in-view: false
+    hibernate:
+      ddl-auto: update
+    #   naming:
+    #     physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl      
+    show-sql: true
