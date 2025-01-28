@@ -28,6 +28,11 @@ public class ProductController {
         return ResponseEntity.ok(productService.getAllProducts());
     }
 
+    @GetMapping("/total-price/{productId}")
+    public ResponseEntity<Double> getTotalPrice(@PathVariable int productId) {
+        return ResponseEntity.ok(productService.getTotalPrice(productId));
+    }
+
     @PutMapping("/update/productId/{productId}/quantity/{quantity}")
     public ResponseEntity<Product> updateStockQuantity(@PathVariable int productId, @PathVariable int quantity) {
        return  ResponseEntity.ok(productService.updateStockQuantity(productId,quantity));

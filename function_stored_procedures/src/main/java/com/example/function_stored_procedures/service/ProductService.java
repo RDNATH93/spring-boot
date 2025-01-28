@@ -24,4 +24,8 @@ public class ProductService {
         productRepository.updateStockQuantity(productId, quantity);
         return productRepository.findById(productId).get();
     }
+
+    public double getTotalPrice(int productId){
+        return productRepository.getTotalPrice(productId);
+    }
 }
