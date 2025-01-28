@@ -1,6 +1,6 @@
 {
     "name": "My Dev Container",
-    "workspaceFolder": "/workspaces/spring-boot",
+    "workspaceFolder": "/workspaces/spring-boot/spring-locking-demo",
     "postCreateCommand": "My Dev Container is ready'",
 	"customizations": {
 		"vscode": {
