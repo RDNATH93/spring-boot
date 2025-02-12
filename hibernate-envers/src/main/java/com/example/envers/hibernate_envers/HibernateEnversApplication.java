@@ -5,7 +5,6 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.data.jpa.repository.config.EnableJpaAuditing;
 
 @SpringBootApplication
-@EntityScan(basePackages = "com.example.envers.hibernate_envers")
 @EnableJpaAuditing
 public class HibernateEnversApplication {
 
