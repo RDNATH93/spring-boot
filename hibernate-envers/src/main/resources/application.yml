@@ -1,0 +1,29 @@
+spring:
+  application:
+    name: hibernate-envers
+  
+  datasource:
+    url: jdbc:h2:mem:testdb  # In-memory database
+    driver-class-name: org.h2.Driver
+    username: sa
+    password: 
+  jpa:
+    #database-platform: org.hibernate.dialect.H2Dialect
+    #hibernate:
+    #  ddl-auto: update
+    show-sql: true  # Enable SQL logging
+  h2:
+    console:
+      enabled: true   # Enable H2 web console
+     # path: /h2-console  # Access via http://localhost:8080/h2-console
+     # settings:
+     #   web-allow-others: true
+  liquibase:
+    enabled: false  # Disable if not using Liquibase migrations
+
+# Envers Configuration
+# spring.jpa.properties:
+#  org.hibernate.envers.audit_table_suffix: _AUD  # Append "_AUD" to audit tables
+#  org.hibernate.envers.revision_field_name: REV  # Name for revision column
+#  org.hibernate.envers.revision_type_field_name: REVTYPE  # Name for revision type column
+#  org.hibernate.envers.default_schema: PUBLIC  # Default schema for H2
