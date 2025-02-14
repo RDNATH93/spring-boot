@@ -4,40 +4,44 @@ import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 
-import org.hibernate.envers.AuditJoinTable;
-import org.hibernate.envers.AuditOverride;
-import org.hibernate.envers.AuditTable;
-import org.hibernate.envers.Audited;
-import org.hibernate.envers.RelationTargetAuditMode;
+import org.springframework.data.annotation.CreatedBy;
 import org.springframework.data.annotation.CreatedDate;
+import org.springframework.data.annotation.LastModifiedBy;
 import org.springframework.data.annotation.LastModifiedDate;
+import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import java.time.LocalDateTime;
 
 @Getter
 @Setter
 @Entity
+@EntityListeners(AuditingEntityListener.class)
 public class Batch {
 
     @Id
     @GeneratedValue
     private Long id;
 
+    @Column(name = "batch_name")
     private String name;
 
+    @Column(name = "batch_description")
     private String description;
 
     @CreatedDate
-    @Column(nullable = false, updatable = false)
+    @Column(nullable = false, updatable = false, name = "created_date")
     private LocalDateTime createdDate;
 
     @LastModifiedDate
-    @Column(nullable = false)
+    @Column(insertable = false, name = "updated_date")
     private LocalDateTime updatedDate;
 
-    @Column(updatable = false)
+    @CreatedBy
+    @Column(nullable = false, updatable = false, name = "created_user")
     private String createdUser;
 
+    @LastModifiedBy
+    @Column(insertable = false, name = "updated_user")
     private String updatedUser;
 
 }

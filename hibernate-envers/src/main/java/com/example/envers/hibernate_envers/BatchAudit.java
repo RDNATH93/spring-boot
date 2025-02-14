@@ -2,7 +2,6 @@ package com.example.envers.hibernate_envers;
 
 import java.time.LocalDateTime;
 
-import org.hibernate.envers.Audited;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
 
@@ -19,7 +18,7 @@ import lombok.Setter;
 @Setter
 @Entity
 public class BatchAudit {
-    
+
     @Id
     @GeneratedValue
     private Long id;
@@ -43,7 +42,7 @@ public class BatchAudit {
     private String updatedUser;
 
     public enum Status {
-        IN_PROGRESS,COMPLETED,FAILED
+        IN_PROGRESS, COMPLETED, FAILED
     }
 
 }
