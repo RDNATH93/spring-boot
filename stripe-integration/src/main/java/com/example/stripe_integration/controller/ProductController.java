@@ -15,7 +15,7 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 @RestController
 @RequestMapping("/products/v1")
-public class ProductController {
+class ProductController {
 
     private final StripeService stripeService;
 

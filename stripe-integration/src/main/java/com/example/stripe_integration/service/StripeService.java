@@ -5,6 +5,7 @@ import java.math.BigDecimal;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
+import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import com.example.stripe_integration.dto.*;
 import com.stripe.Stripe;
@@ -43,10 +44,13 @@ public class StripeService {
         SessionCreateParams.LineItem.builder().setQuantity(product.quantity())
         .setPriceData(priceData).build();
         
+        String baseUrl = ServletUriComponentsBuilder.fromCurrentContextPath().build().toUriString();
+        log.info("baseUrl: "+baseUrl);
+
         SessionCreateParams params = SessionCreateParams.builder()
           .setMode(SessionCreateParams.Mode.PAYMENT)
-          .setSuccessUrl("http://locahost:8080/success")
-          .setCancelUrl("http://localhost:8080/cancel")
+          .setSuccessUrl("https://literate-space-capybara-xxvjxxwvx64f9qw6-8080.app.github.dev/success")
+          .setCancelUrl("https://literate-space-capybara-xxvjxxwvx64f9qw6-8080.app.github.dev/cancel")
           .addLineItem(lineItem)
           .build();
 
@@ -57,10 +61,10 @@ public class StripeService {
             log.error("Exception ", ex);    
         }
 
-        return StripeResponse.builder()
-        .setStatus("SUCCESS").setMessage("Payment session created")
-        .setSessionId(session.getId()).setSessionUrl(session.getUrl()).build();
-        
+        // return StripeResponse.builder()
+        // .setStatus("SUCCESS").setMessage("Payment session created")
+        // .setSessionId(session.getId()).setSessionUrl(session.getUrl()).build();
+        return new StripeResponse("SUCCESS","Payment session created",session.getId(),session.getUrl());
              
   }
 }
