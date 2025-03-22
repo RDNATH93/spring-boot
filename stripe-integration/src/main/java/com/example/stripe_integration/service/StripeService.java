@@ -4,6 +4,7 @@ import java.math.BigDecimal;
 
 
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.stereotype.Service;
 
 import com.example.stripe_integration.dto.*;
 import com.stripe.Stripe;
@@ -16,6 +17,7 @@ import lombok.extern.slf4j.Slf4j;
 
 
 @Slf4j
+@Service
 public class StripeService {
   
   @Value("${stripe.publishKey}")
@@ -24,7 +26,8 @@ public class StripeService {
   @Value("${stripe.secretKey}")
   private String stripeSecretKey;
 
-  public StripeResponse checkoutResponse(Product product){
+  public StripeResponse checkout(Product product){
+    log.info("checkout service");
         Stripe.apiKey = stripeSecretKey;
         SessionCreateParams.LineItem.PriceData.ProductData productData =
         SessionCreateParams.LineItem.PriceData.ProductData.builder().setName(product.productName()).build();
@@ -42,8 +45,8 @@ public class StripeService {
         
         SessionCreateParams params = SessionCreateParams.builder()
           .setMode(SessionCreateParams.Mode.PAYMENT)
-          .setSuccessUrl("https://literate-tribble-wj9674pp6gcg65w.github.dev:8080/success")
-          .setCancelUrl("https://literate-tribble-wj9674pp6gcg65w.github.dev:8080/cancel")
+          .setSuccessUrl("http://locahost:8080/success")
+          .setCancelUrl("http://localhost:8080/cancel")
           .addLineItem(lineItem)
           .build();
 
@@ -55,7 +58,7 @@ public class StripeService {
         }
 
         return StripeResponse.builder()
-        .setStatus("SUCCESS").setMessage("Payment successful")
+        .setStatus("SUCCESS").setMessage("Payment session created")
         .setSessionId(session.getId()).setSessionUrl(session.getUrl()).build();
         
              
