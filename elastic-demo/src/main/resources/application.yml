@@ -1,0 +1,20 @@
+management:
+  elastic:
+    metrics:
+     export:
+        # You will probably want disable Elastic publishing in a local development profile.
+        enabled: true
+
+        # The interval at which metrics are sent to Elastic. The default is 1 minute.
+        step: 1m
+
+        # The index to store metrics in, defaults to "micrometer-metrics"
+        index: micrometer-metrics
+        connectTimeout: 60s
+        readTimeout: 60s
+        
+
+spring:
+  application.name: elastic-demo
+
+
