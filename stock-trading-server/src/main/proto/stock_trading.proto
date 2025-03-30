@@ -1,0 +1,20 @@
+syntax = "proto3";
+
+package stocktranding;
+option java_package = "com.example.grpc";
+option java_outer_classname = "StockTradingProto";
+option java_multiple_files = true;
+
+message StockRequest{
+    string stock_symbol =1;
+}
+
+message StockResponse{
+    string stock_symbol =1;
+    double price =2 ;
+    string timstamp =3;
+}
+
+service StockTradingService{
+   rpc getStockPrice(StockRequest) returns (StockResponse);
+}

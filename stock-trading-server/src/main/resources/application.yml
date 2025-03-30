@@ -1,0 +1,16 @@
+grpc:
+  server:
+    port: 9090
+    enabled-reflection: true
+
+spring:
+  application.name: stock-trading-server
+  datasource:
+    url: jdbc:mysql://localhost:3306/stock_trading_db?useSSL=false&allowPublicKeyRetrieval=true
+    username: root
+    password: root
+    driver-class-name: com.mysql.cj.jdbc.Driver
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
