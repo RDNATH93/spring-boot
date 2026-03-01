@@ -5,9 +5,11 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
+import com.fasterxml.jackson.annotation.JsonInclude;
 
 @Entity
 @Table(name = "Product")
+@JsonInclude(JsonInclude.Include.NON_NULL)
 public class Product {
 
     @Id
