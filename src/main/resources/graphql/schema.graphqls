@@ -1,0 +1,31 @@
+#Operation Types(Query,Mutation,Subscription)
+type Query{
+  books: [Book!]!
+  book(id:ID!): Book!
+  search(text: String!): [SearchItem]
+  authors: [Author!]!
+} 
+
+type Mutation{
+	addBook(book: BookInput!): Book
+}
+
+union SearchItem = Author | Book
+
+#Object Types(output type)
+type Book{
+	id: ID!
+	title: String!
+	author: Author
+}
+
+type Author{
+	id: ID!
+	name: String!
+	books: [Book!]!
+}
+
+input BookInput{
+   title: String!
+   authorId: ID!
+}
