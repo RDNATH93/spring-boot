@@ -1,18 +1,23 @@
 #Operation Types(Query,Mutation,Subscription)
+
 type Query{
   books: [Book!]!
   book(id:ID!): Book!
   search(text: String!): [SearchItem]
   authors: [Author!]!
+  review(id: Int!): Review
+  reviews(filter: ReviewFilter): [Review]!
 } 
 
 type Mutation{
 	addBook(book: BookInput!): Book
 }
 
+# Union BookOrAuthor - This is a type we don't have in Java (they don't share anything in common)
 union SearchItem = Author | Book
 
 #Object Types(output type)
+
 type Book{
 	id: ID!
 	title: String!
@@ -28,4 +33,20 @@ type Author{
 input BookInput{
    title: String!
    authorId: ID!
+}
+
+type Review {
+    id: ID!
+    rating: Int!
+    comment: String
+    createdAt: String!
+    reviewerName: String!
+    verified: Boolean!
+    book: Book!
+}
+
+input ReviewFilter {
+    rating: Int
+    verified: Boolean
+    reviewerName: String
 }
