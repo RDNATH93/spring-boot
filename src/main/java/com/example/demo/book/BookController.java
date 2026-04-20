@@ -39,6 +39,11 @@ class BookController {
 		return bookRepository.findById(Id).orElseThrow(()-> new RuntimeException ("Book not found"));
 	}
 	
+	@SchemaMapping
+	Author author(Book book) {
+		return authorRepository.findById(book.getAuthor().getId()).orElse(null);
+	}
+	
 	@MutationMapping
 	Book addBook(@Argument BookInput book) {
 		Author author = authorRepository.findById(book.authorId()).orElseThrow(()-> new RuntimeException ("Author not found"));
